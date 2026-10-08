@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anotaciones rapidas</title>
+    <link rel="stylesheet" href="anotaciones_rapidas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="anotaciones_rapidas.js" defer></script>
+</head>
+<body>
+    <!---------------------------------------->
+    <!--|estructuracion_anotaciones_rapidas|-->
+    <!---------------------------------------->
+    <main class="app">
+        <!-- Encabezado con el título y la explicación -->
+        <header>
+            <h1>Anotaciones Rápidas</h1>
+            <p class="subtitulo">Escribe una idea, pulsa Agregar y se guarda sola en tu navegador.</p>
+        </header>
+        <!-- Zona para escribir una anotación nueva.
+        Aquí el usuario escribe el texto y lo agrega a la lista. -->
+        <section class="nueva">
+            <!-- Etiqueta asociada al campo para mejorar la accesibilidad -->
+            <label for="campo-nota" class="etiqueta">Nueva anotación</label>
+            <!-- Fila que pone el campo de texto y el botón uno al lado del otro -->
+            <div class="fila">
+                <!-- Campo de texto: lo que escribas aquí también se guarda en localStorage -->
+                <input id="campo-nota" type="text" placeholder="Ej: Comprar cuaderno" maxlength="100" autocomplete="off">
+                <!-- Botón que agrega la anotación a la lista -->
+                <button id="btn-agregar" class="boton">Agregar</button>
+            </div>
+            <!-- Contador de letras escritas (lo actualiza JavaScript) -->
+            <p id="caracteres" class="caracteres">0 / 100</p>
+            <!-- Mensaje de error si el campo está vacío -->
+            <p id="error" class="error oculto">Escribe algo antes de agregar.</p>
+        </section>
+        <!-- Consejo para quien usa la aplicación por primera vez -->
+        <aside class="consejo">
+            <strong>Consejo:</strong>
+            marca la casilla de una nota cuando la termines y usa los filtros
+            para ver solo lo que te falta por hacer.
+        </aside>
+        <!-- Barra de progreso: muestra qué porcentaje de las notas ya está hecho -->
+        <div class="progreso-fondo">
+            <!-- El ancho de esta parte lo cambia JavaScript -->
+            <div id="progreso" class="progreso"></div>
+        </div>
+        <!-- Barra con el contador y los filtros -->
+        <section class="barra">
+            <!-- Texto con la cantidad de anotaciones pendientes -->
+            <p id="contador" class="contador"></p>
+            <!-- Botones para ver todas, solo las pendientes o solo las hechas.
+            El atributo data-filtro le dice a JavaScript qué filtro es cada uno. -->
+            <div class="filtros" role="group" aria-label="Filtrar anotaciones">
+                <button class="filtro" data-filtro="todas">Todas</button>
+                <button class="filtro" data-filtro="pendientes">Pendientes</button>
+                <button class="filtro" data-filtro="hechas">Hechas</button>
+            </div>
+        </section>
+        <!-- Lista de anotaciones: JavaScript crea cada elemento.
+        Cada nota tiene un texto, una casilla "hecha" y un botón de eliminar. -->
+        <ul id="lista" class="lista"></ul>
+        <!-- Mensaje que se ve cuando no hay nada que mostrar.
+        JavaScript cambia el texto según el filtro elegido. -->
+        <p id="vacio" class="vacio oculto"></p>
+        <!-- Acciones para limpiar la lista.
+        Los datos se borran también de localStorage. -->
+        <div class="acciones">
+            <!-- Elimina solo las anotaciones marcadas como hechas -->
+            <button id="btn-completadas" class="boton-texto">Borrar las hechas</button>
+            <!-- Elimina todas las anotaciones -->
+            <button id="btn-todo" class="boton-texto">Borrar todo</button>
+        </div>
+    </main>
+    <!-- Aviso por si el navegador tiene JavaScript desactivado -->
+    <noscript>Activa JavaScript para usar las anotaciones.</noscript>
+</body>
+</html>
