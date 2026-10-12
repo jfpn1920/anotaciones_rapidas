@@ -1,0 +1,229 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --fondo: #eef0f7;
+    --tinta: #3b2a4d;
+    --linea: #cfd3e4;
+    --error: #c0392b;
+    --nota0: #fff3a8;
+    --nota1: #ffc9d9;
+    --nota2: #bfe3ff;
+    --nota3: #c9f0cf;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 28px 14px;
+    font-family: 'Work Sans', Arial, sans-serif;
+    color: var(--tinta);
+    background: var(--fondo);
+}
+/*-------------------------------*/
+/*-|estilo_anotaciones_rapidas|--*/
+/*-------------------------------*/
+.app {
+    width: 100%;
+    max-width: 640px;
+}
+h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.3rem;
+    line-height: 1.1;
+}
+.subtitulo {
+    margin: 8px 0 24px;
+    line-height: 1.5;
+}
+.oculto {
+    display: none !important;
+}
+.etiqueta {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+.fila {
+    display: flex;
+    gap: 10px;
+}
+input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 14px;
+    font: inherit;
+    color: var(--tinta);
+    background: #fff;
+    border: 2px solid var(--tinta);
+    border-radius: 10px;
+}
+.error {
+    margin-top: 8px;
+    color: var(--error);
+    font-weight: 600;
+}
+.boton {
+    padding: 12px 22px;
+    font: inherit;
+    font-weight: 600;
+    color: #fff;
+    background: var(--tinta);
+    border: 2px solid var(--tinta);
+    border-radius: 10px;
+    cursor: pointer;
+}
+.boton:hover {
+    opacity: 0.88;
+}
+.boton-texto {
+    padding: 8px;
+    font: inherit;
+    color: var(--tinta);
+    background: none;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.acciones {
+    margin-top: 22px;
+}
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #6c4ab6;
+    outline-offset: 2px;
+}
+.consejo {
+    margin-top: 20px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    background: #fff;
+    border-left: 5px solid var(--tinta);
+}
+.caracteres {
+    margin-top: 6px;
+    font-size: 0.8rem;
+    text-align: right;
+    opacity: 0.7;
+}
+.progreso-fondo {
+    height: 8px;
+    margin-top: 22px;
+    background: var(--linea);
+    border-radius: 4px;
+}
+.progreso {
+    height: 100%;
+    width: 0;
+    background: var(--tinta);
+    border-radius: 4px;
+    transition: width 0.3s;
+}
+.barra {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 14px 0 14px;
+}
+.contador {
+    font-weight: 600;
+}
+.filtros {
+    display: flex;
+    gap: 6px;
+}
+.filtro {
+    padding: 6px 12px;
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--tinta);
+    background: transparent;
+    border: 2px solid var(--linea);
+    border-radius: 20px;
+    cursor: pointer;
+}
+.filtro.activo {
+    color: #fff;
+    background: var(--tinta);
+    border-color: var(--tinta);
+}
+.lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 16px;
+    list-style: none;
+}
+.nota {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 110px;
+    padding: 14px;
+    box-shadow: 0 3px 6px rgba(59, 42, 77, 0.18);
+}
+.nota:nth-child(odd) {
+    transform: rotate(-1deg);
+}
+.nota:nth-child(even) {
+    transform: rotate(1deg);
+}
+.c0 {
+    background: var(--nota0);
+}
+.c1 {
+    background: var(--nota1);
+}
+.c2 {
+    background: var(--nota2);
+}
+.c3 {
+    background: var(--nota3);
+}
+.texto {
+    line-height: 1.4;
+    word-break: break-word;
+}
+.nota.hecha .texto {
+    text-decoration: line-through;
+    opacity: 0.55;
+}
+.pie-nota {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.pie-nota label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.pie-nota input {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    accent-color: var(--tinta);
+}
+.eliminar {
+    padding: 4px 10px;
+    font: inherit;
+    font-size: 0.85rem;
+    color: var(--tinta);
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--tinta);
+    border-radius: 6px;
+    cursor: pointer;
+}
+.vacio {
+    padding: 28px 10px;
+    text-align: center;
+    opacity: 0.75;
+}
