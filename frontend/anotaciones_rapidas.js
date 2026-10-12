@@ -4,17 +4,15 @@
 const CLAVE = "anotacionesRapidas";
 const MAXIMO = 100;
 let estado = {
-    borrador: "",
-    filtro: "todas",
-    notas: []
+    borrador: "", filtro: "todas", notas: []
 };
 const $ = (id) => document.getElementById(id);
-// ===== GUARDAR Y RECUPERAR DATOS =====
-// Guarda las anotaciones y el estado actual en localStorage
+//----------------------------------------------------//
+//--|guardar_y_cargar_los_datos_usando_localstorage|--//
+//----------------------------------------------------//
 function guardar() {
     localStorage.setItem(CLAVE, JSON.stringify(estado));
 }
-// Recupera los datos guardados en el navegador
 function cargar() {
     const g = localStorage.getItem(CLAVE);
     if (g) {

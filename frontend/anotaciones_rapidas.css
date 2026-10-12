@@ -41,6 +41,9 @@ h1 {
 .oculto {
     display: none !important;
 }
+/*-------------------------------------*/
+/*-|estilo_formulario_de_anotaciones|--*/
+/*-------------------------------------*/
 .etiqueta {
     display: block;
     margin-bottom: 6px;
@@ -87,11 +90,13 @@ input {
     text-decoration: underline;
     cursor: pointer;
 }
+/*-------------------------------------------------*/
+/*-|estilo_botones_para_eliminar_las_anotaciones|--*/
+/*-------------------------------------------------*/
 .acciones {
     margin-top: 22px;
 }
-button:focus-visible,
-input:focus-visible {
+button:focus-visible, input:focus-visible {
     outline: 3px solid #6c4ab6;
     outline-offset: 2px;
 }
@@ -109,6 +114,9 @@ input:focus-visible {
     text-align: right;
     opacity: 0.7;
 }
+/*----------------------------------*/
+/*-|estilo_control_de_anotaciones|--*/
+/*----------------------------------*/
 .progreso-fondo {
     height: 8px;
     margin-top: 22px;

@@ -29,73 +29,29 @@
             <pid="caracteres" class="caracteres">0 / 100</p>
             <pid="error" class="error oculto">Escribe algo antes de agregar.</p>
         </section>
-        <!-------------------------------------->
-        <!--|consejo_para_orientar_al_usuario|-->
-        <!-------------------------------------->
-        <aside class="consejo">
-            <strong>Consejo:</strong> marca la casilla de una nota cuando la termines y usa los filtros para ver solo lo que te falta por hacer.
-        </aside>
-        <!------------------------------>
-        <!--|porcentaje de anotaciones-->
-        <!------------------------------>
+        <aside class="consejo"><strong>Consejo:</strong> marca la casilla de una nota cuando la termines y usa los filtros para ver solo lo que te falta por hacer.</aside>
+        <!---------------------------->
+        <!--|control_de_anotaciones|-->
+        <!---------------------------->
         <div class="progreso-fondo">
             <div id="progreso" class="progreso"></div>
         </div>
-        <!-- Contador de anotaciones y botones para filtrar la lista -->
         <section class="barra">
-            <p
-                id="contador"
-                class="contador"
-            ></p>
-            <div
-                class="filtros"
-                role="group"
-                aria-label="Filtrar anotaciones"
-            >
-                <button
-                    class="filtro"
-                    data-filtro="todas"
-                >
-                    Todas
-                </button>
-                <button
-                    class="filtro"
-                    data-filtro="pendientes"
-                >
-                    Pendientes
-                </button>
-                <button
-                    class="filtro"
-                    data-filtro="hechas"
-                >
-                    Hechas
-                </button>
+            <p id="contador" class="contador"></p>
+            <div class="filtros" role="group" aria-label="Filtrar anotaciones">
+                <button class="filtro" data-filtro="todas">Todas</button>
+                <button class="filtro" data-filtro="pendientes">Pendientes</button>
+                <button class="filtro" data-filtro="hechas">Hechas</button>
             </div>
         </section>
-        <!-- Lista donde JavaScript muestra las anotaciones guardadas -->
-        <ul
-            id="lista"
-            class="lista"
-        ></ul>
-        <!-- Mensaje que aparece cuando la lista no tiene resultados -->
-        <p
-            id="vacio"
-            class="vacio oculto"
-        ></p>
-        <!-- Botones para eliminar las anotaciones completadas o todas las notas -->
+        <ul id="lista" class="lista"></ul>
+        <p id="vacio" class="vacio oculto"></p>
+        <!------------------------------------------->
+        <!--|botones_para_eliminar_las_anotaciones|-->
+        <!------------------------------------------->
         <div class="acciones">
-            <button
-                id="btn-completadas"
-                class="boton-texto"
-            >
-                Borrar las hechas
-            </button>
-            <button
-                id="btn-todo"
-                class="boton-texto"
-            >
-                Borrar todo
-            </button>
+            <button id="btn-completadas" class="boton-texto">Borrar las hechas</button>
+            <button id="btn-todo" class="boton-texto">Borrar todo</button>
         </div>
     </main>
 </body>
