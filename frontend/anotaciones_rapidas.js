@@ -7,9 +7,9 @@ let estado = {
     borrador: "", filtro: "todas", notas: []
 };
 const $ = (id) => document.getElementById(id);
-//----------------------------------------------------//
-//--|guardar_y_cargar_los_datos_usando_localstorage|--//
-//----------------------------------------------------//
+//------------------------------------------------//
+//--|funcionalidad_guardar_y_cargar_anotaciones|--//
+//------------------------------------------------//
 function guardar() {
     localStorage.setItem(CLAVE, JSON.stringify(estado));
 }
@@ -19,15 +19,15 @@ function cargar() {
         estado = JSON.parse(g);
     }
 }
-// ===== MOSTRAR Y CREAR ANOTACIONES =====
-// Devuelve las anotaciones que coinciden con el filtro seleccionado
+//---------------------------------------//
+//--|funcionalidad_filtrar_anotaciones|--//
+//---------------------------------------//
 function visibles() {
-    return estado.notas.filter((n) =>
-        estado.filtro === "todas" ||
-        (estado.filtro === "hechas") === n.hecha
-    );
+    return estado.notas.filter((n) => estado.filtro === "todas" || (estado.filtro === "hechas") === n.hecha);
 }
-// Crea el elemento HTML correspondiente a una anotación
+//--------------------------------------------------//
+//--|funcionalidad_crear_elementos_de_anotaciones|--//
+//--------------------------------------------------//
 function crearNota(n) {
     const li = document.createElement("li");
     li.className = "nota c" + n.color + (n.hecha ? " hecha" : "");
@@ -49,7 +49,9 @@ function crearNota(n) {
     li.append(texto, pie);
     return li;
 }
-// Actualiza la lista, el contador, el progreso y los filtros
+//---------------------------------------------------//
+//--|funcionalidad_actualizar_interfaz_anotaciones|--//
+//---------------------------------------------------//
 function pintar() {
     const lista = visibles();
     $("lista").innerHTML = "";
@@ -59,14 +61,9 @@ function pintar() {
     const total = estado.notas.length;
     const hechas = estado.notas.filter((n) => n.hecha).length;
     $("contador").textContent = (total - hechas) + " pendientes de " + total;
-    $("progreso").style.width = total
-        ? (hechas / total) * 100 + "%"
-        : "0%";
+    $("progreso").style.width = total ? (hechas / total) * 100 + "%" : "0%";
     document.querySelectorAll(".filtro").forEach((b) => {
-        b.classList.toggle(
-            "activo",
-            b.dataset.filtro === estado.filtro
-        );
+        b.classList.toggle("activo", b.dataset.filtro === estado.filtro);
     });
     const vacios = {
         todas: "Aún no hay anotaciones. Escribe la primera arriba.",
@@ -76,29 +73,27 @@ function pintar() {
     $("vacio").textContent = vacios[estado.filtro];
     $("vacio").classList.toggle("oculto", lista.length > 0);
 }
-// ===== CAMPO DE TEXTO Y NUEVAS ANOTACIONES =====
-// Actualiza el contador de caracteres escritos
+//-------------------------------------------------//
+//--|funcionalidad_contador_y_borrador_anotacion|--//
+//-------------------------------------------------//
 function contarLetras() {
-    $("caracteres").textContent =
-        $("campo-nota").value.length + " / " + MAXIMO;
+    $("caracteres").textContent = $("campo-nota").value.length + " / " + MAXIMO;
 }
-// Guarda el borrador mientras el usuario escribe
 function alEscribir() {
     estado.borrador = $("campo-nota").value;
     contarLetras();
     guardar();
 }
-// Valida el texto y agrega una nueva anotación
+//-------------------------------------------//
+//--|funcionalidad_agregar_nueva_anotacion|--//
+//-------------------------------------------//
 function agregar() {
     const texto = $("campo-nota").value.trim();
     $("error").classList.toggle("oculto", texto !== "");
     if (texto === "") {
         return;
     }
-    const id = Math.max(
-        0,
-        ...estado.notas.map((n) => n.id)
-    ) + 1;
+    const id = Math.max(0, ...estado.notas.map((n) => n.id)) + 1;
     estado.notas.unshift({
         id: id,
         texto: texto,
@@ -113,42 +108,44 @@ function agregar() {
     pintar();
     $("campo-nota").focus();
 }
-// ===== BUSCAR Y ELIMINAR ANOTACIONES =====
-// Busca una anotación utilizando el identificador de su elemento HTML
+//-------------------------------------------------//
+//--|funcionalidad_buscar_y_eliminar_anotaciones|--//
+//-------------------------------------------------//
 function buscar(elemento) {
     const id = Number(elemento.closest("li").dataset.id);
     return estado.notas.find((n) => n.id === id);
 }
-// Elimina una anotación y actualiza la información guardada
 function eliminar(nota) {
     estado.notas = estado.notas.filter((n) => n !== nota);
     guardar();
     pintar();
 }
-// ===== EVENTOS DE LA APLICACIÓN =====
-// Agrega una anotación al pulsar el botón
+//--------------------------------------------//
+//--|eventos_agregar_y_escribir_anotaciones|--//
+//--------------------------------------------//
 $("btn-agregar").addEventListener("click", agregar);
-// Actualiza el borrador y el contador al escribir
 $("campo-nota").addEventListener("input", alEscribir);
-// Permite agregar una anotación al pulsar Enter
 $("campo-nota").addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         agregar();
     }
 });
-// Detecta los clics en los botones de eliminar de cada anotación
+//-------------------------------------------//
+//--|eventos_eliminar_y_marcar_anotaciones|--//
+//-------------------------------------------//
 $("lista").addEventListener("click", (e) => {
     if (e.target.classList.contains("eliminar")) {
         eliminar(buscar(e.target));
     }
 });
-// Actualiza el estado cuando se marca o desmarca una anotación
 $("lista").addEventListener("change", (e) => {
     buscar(e.target).hecha = e.target.checked;
     guardar();
     pintar();
 });
-// Cambia el filtro y actualiza las anotaciones visibles
+//---------------------------------//
+//--|eventos_filtrar_anotaciones|--//
+//---------------------------------//
 document.querySelectorAll(".filtro").forEach((b) => {
     b.addEventListener("click", () => {
         estado.filtro = b.dataset.filtro;
@@ -156,25 +153,27 @@ document.querySelectorAll(".filtro").forEach((b) => {
         pintar();
     });
 });
-// Elimina las anotaciones que ya están marcadas como hechas
+//----------------------------------------------//
+//--|eventos_eliminar_anotaciones_completadas|--//
+//----------------------------------------------//
 $("btn-completadas").addEventListener("click", () => {
     estado.notas = estado.notas.filter((n) => !n.hecha);
     guardar();
     pintar();
 });
-// Elimina todas las anotaciones después de confirmar la acción
+//--------------------------------------------//
+//--|eventos_eliminar_todas_las_anotaciones|--//
+//--------------------------------------------//
 $("btn-todo").addEventListener("click", () => {
-    if (
-        estado.notas.length &&
-        confirm("¿Seguro que quieres borrar todas las anotaciones?")
-    ) {
+    if (estado.notas.length && confirm("¿Seguro que quieres borrar todas las anotaciones?")) {
         estado.notas = [];
         guardar();
         pintar();
     }
 });
-// ===== INICIAR LA APLICACIÓN =====
-// Recupera los datos y muestra la información al abrir la página
+//-------------------------------------//
+//--|inicializacion_de_la_aplicacion|--//
+//-------------------------------------//
 cargar();
 $("campo-nota").value = estado.borrador;
 contarLetras();

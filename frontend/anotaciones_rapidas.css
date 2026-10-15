@@ -22,9 +22,9 @@ body {
     color: var(--tinta);
     background: var(--fondo);
 }
-/*-------------------------------*/
-/*-|estilo_anotaciones_rapidas|--*/
-/*-------------------------------*/
+/*-------------------------------------------*/
+/*-|estilo_estructural_anotaciones_rapidas|--*/
+/*-------------------------------------------*/
 .app {
     width: 100%;
     max-width: 640px;
@@ -80,21 +80,6 @@ input {
 }
 .boton:hover {
     opacity: 0.88;
-}
-.boton-texto {
-    padding: 8px;
-    font: inherit;
-    color: var(--tinta);
-    background: none;
-    border: none;
-    text-decoration: underline;
-    cursor: pointer;
-}
-/*-------------------------------------------------*/
-/*-|estilo_botones_para_eliminar_las_anotaciones|--*/
-/*-------------------------------------------------*/
-.acciones {
-    margin-top: 22px;
 }
 button:focus-visible, input:focus-visible {
     outline: 3px solid #6c4ab6;
@@ -234,4 +219,19 @@ button:focus-visible, input:focus-visible {
     padding: 28px 10px;
     text-align: center;
     opacity: 0.75;
+}
+/*-------------------------------------------------*/
+/*-|estilo_botones_para_eliminar_las_anotaciones|--*/
+/*-------------------------------------------------*/
+.acciones {
+    margin-top: 22px;
+}
+.boton-texto {
+    padding: 8px;
+    font: inherit;
+    color: var(--tinta);
+    background: none;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
 }
